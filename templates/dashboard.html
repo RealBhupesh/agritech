@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}AgriTech Dashboard - AgriPulse{% endblock %}
+
+{% block content %}
+  <section class="dash-hero">
+    <div class="container dash-topbar">
+      <div class="dash-titlewrap">
+        <div class="kicker kicker--dash">AgriTech Platform</div>
+        <h1 class="dash-title">Real-time IoT Monitoring Simulation</h1>
+        <p class="dash-subtitle">
+          Live-updating sensor signals with trends and actionable alerts (synthetic demo data).
+        </p>
+      </div>
+
+      <div class="dash-controls">
+        <div class="control-group">
+          <div class="label label--small">Update</div>
+          <select id="simIntervalSelect" class="input input--small" aria-label="Simulation update interval">
+            <option value="3000">3 seconds</option>
+            <option value="5000" selected>5 seconds</option>
+            <option value="8000">8 seconds</option>
+          </select>
+        </div>
+        <div class="control-group control-group--btns">
+          <button id="simStartBtn" class="btn btn--primary" type="button">Start</button>
+          <button id="simStopBtn" class="btn btn--ghost" type="button" disabled>Stop</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dash-wrap">
+    <div class="container dash-layout">
+      <aside class="dash-sidebar" aria-label="Dashboard navigation">
+        <div class="dash-sidehead">Modules</div>
+        <a class="dash-sidelink dash-sidelink--active" href="/dashboard">Overview</a>
+        <a class="dash-sidelink" href="{{ url_for('topic', slug='iot') }}">IoT Devices</a>
+        <a class="dash-sidelink" href="{{ url_for('topic', slug='water') }}">Water Management</a>
+        <a class="dash-sidelink" href="{{ url_for('topic', slug='drones') }}">Drones</a>
+        <a class="dash-sidelink" href="{{ url_for('topic', slug='distribution') }}">Distribution</a>
+
+        <div class="dash-sidehint">
+          Tip: start simulation, then watch the trends change.
+        </div>
+      </aside>
+
+      <main class="dash-main" id="dashMain">
+        <div class="dash-grid dash-grid--metrics">
+          <div class="dash-metric">
+            <div class="dash-metric-top">
+              <div>
+                <div class="dash-metric-label">Avg Soil Moisture</div>
+                <div class="dash-metric-value" id="metricSoilMoisture">--%</div>
+              </div>
+              <div class="metric-icon metric-icon--a" aria-hidden="true">⟡</div>
+            </div>
+            <div class="spark">
+              <canvas id="sparkSoil" height="54" aria-label="Soil moisture trend chart" role="img"></canvas>
+            </div>
+          </div>
+
+          <div class="dash-metric">
+            <div class="dash-metric-top">
+              <div>
+                <div class="dash-metric-label">Temperature</div>
+                <div class="dash-metric-value" id="metricTemp">--°C</div>
+              </div>
+              <div class="metric-icon metric-icon--b" aria-hidden="true">⟡</div>
+            </div>
+            <div class="spark">
+              <canvas id="sparkTemp" height="54" aria-label="Temperature trend chart" role="img"></canvas>
+            </div>
+          </div>
+
+          <div class="dash-metric">
+            <div class="dash-metric-top">
+              <div>
+                <div class="dash-metric-label">Crop Health</div>
+                <div class="dash-metric-value" id="metricHealth">--%</div>
+              </div>
+              <div class="metric-icon metric-icon--c" aria-hidden="true">⟡</div>
+            </div>
+            <div class="gauge">
+              <canvas id="gaugeHealth" height="120" aria-label="Crop health gauge" role="img"></canvas>
+            </div>
+          </div>
+
+          <div class="dash-metric">
+            <div class="dash-metric-top">
+              <div>
+                <div class="dash-metric-label">Wind Speed</div>
+                <div class="dash-metric-value" id="metricWind">-- km/h</div>
+              </div>
+              <div class="metric-icon metric-icon--d" aria-hidden="true">⟡</div>
+            </div>
+            <div class="spark">
+              <canvas id="sparkWind" height="54" aria-label="Wind speed trend chart" role="img"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-grid dash-grid--main">
+          <div class="dash-card">
+            <div class="dash-card-head">
+              <div>
+                <div class="dash-card-title">Soil Moisture & Temp Trends</div>
+                <div class="dash-card-subtitle">Last updates, spaced by the simulation interval</div>
+              </div>
+              <div class="dash-card-meta" id="lastUpdated">--</div>
+            </div>
+
+            <div class="chart-wrap">
+              <canvas id="mainTrendsChart" height="260" aria-label="Soil moisture and temperature trend chart" role="img"></canvas>
+            </div>
+          </div>
+
+          <div class="dash-card dash-card--alerts">
+            <div class="dash-card-head">
+              <div>
+                <div class="dash-card-title">Recent Alerts</div>
+                <div class="dash-card-subtitle">Actionable signals from synthetic telemetry</div>
+              </div>
+            </div>
+
+            <div class="alerts" id="alertsList" role="list" aria-label="Alerts list">
+              <div class="alert-empty">Start the simulation to see alerts.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-grid dash-grid--footer">
+          <div class="dash-callout">
+            <div class="dash-callout-title">Want to connect real sensors?</div>
+            <div class="dash-callout-subtitle">
+              This dashboard is designed to plug into your IoT pipeline and replace synthetic data.
+            </div>
+            <div class="dash-callout-actions">
+              <a class="btn btn--primary" href="{{ url_for('contact_get', topic='Agriculture - Use of IoT Devices') }}">Request a demo</a>
+              <a class="btn btn--ghost" href="{{ url_for('topic', slug='iot') }}">Read IoT pillar</a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="{{ url_for('static', filename='dashboard.js') }}" defer></script>
+{% endblock %}
+

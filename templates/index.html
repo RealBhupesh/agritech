@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}AgriPulse - Agriculture IoT & Drones{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="kicker">Modern agriculture solutions</div>
+        <h1 class="hero-title">
+          Turn field signals into decisions.
+        </h1>
+        <p class="hero-subtitle">
+          A minimalist, end-to-end approach for <strong>IoT</strong>, <strong>drones</strong>, <strong>water management</strong>, and <strong>farm-to-market distribution</strong>.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="{{ url_for('contact_get') }}">Request a demo</a>
+          <a class="btn btn--ghost" href="#topics">Explore topics</a>
+        </div>
+
+        <div class="hero-badges" aria-label="Highlights">
+          <div class="badge">Sensor-ready workflows</div>
+          <div class="badge">Scalable operations</div>
+          <div class="badge">Practical implementation</div>
+        </div>
+      </div>
+
+      <div class="hero-panel" aria-hidden="true">
+        <div class="panel-card">
+          <div class="panel-metric">
+            <span class="metric-num">4</span>
+            <span class="metric-label">solution pillars</span>
+          </div>
+          <div class="panel-line"></div>
+          <div class="panel-list">
+            <div class="panel-item">
+              <span class="dot dot--a"></span> IoT devices
+            </div>
+            <div class="panel-item">
+              <span class="dot dot--b"></span> Drones
+            </div>
+            <div class="panel-item">
+              <span class="dot dot--c"></span> Water management
+            </div>
+            <div class="panel-item">
+              <span class="dot dot--d"></span> Distribution
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="topics">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Choose a use-case pillar</h2>
+        <p class="section-subtitle">
+          Each topic page outlines how it helps farmers, agronomy teams, and operations.
+        </p>
+      </div>
+
+      <div class="cards-grid" role="list">
+        {% for t in topics %}
+          <a class="card" href="{{ url_for('topic', slug=t.slug) }}" role="listitem">
+            <div class="card-top">
+              <div class="card-kicker">{{ t.title }}</div>
+              <div class="card-icon" aria-hidden="true">▦</div>
+            </div>
+            <div class="card-sub">
+              {{ t.kicker }}
+            </div>
+            <div class="card-bullets" aria-label="Highlights">
+              {% for u in t.overview[:3] %}
+                <div class="mini-row">
+                  <span class="mini-check" aria-hidden="true">✓</span>
+                  <span>{{ u }}</span>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="card-cta">View details →</div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <div class="two-col">
+        <div class="callout">
+          <div class="callout-title">How it works</div>
+          <div class="callout-body">
+            <div class="step">
+              <div class="step-num">01</div>
+              <div class="step-text">
+                Select a pillar and define your operational goal.
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">02</div>
+              <div class="step-text">
+                Map data inputs (sensors, imagery, schedules, logistics signals).
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">03</div>
+              <div class="step-text">
+                Implement a workflow with alerts and measurable outcomes.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-card-title">Want a tailored blueprint?</div>
+          <p class="form-card-sub">
+            Tell us the topic you care about and we’ll respond with a suggested rollout plan.
+          </p>
+          <a class="btn btn--primary btn--wide" href="{{ url_for('contact_get') }}">Request a demo</a>
+          <div class="fineprint">
+            No spam. Stored securely in PostgreSQL.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+

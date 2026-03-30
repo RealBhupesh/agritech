@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>{% block title %}AgriPulse{% endblock %}</title>
+    <meta
+      name="description"
+      content="Minimal, modern web experience for agriculture IoT, drones, water management, and farm-to-market distribution."
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="{{ url_for('index') }}">
+          <span class="brand-mark" aria-hidden="true">◆</span>
+          <span class="brand-name">AgriPulse</span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Open navigation"
+          aria-controls="navMenu"
+          aria-expanded="false"
+          data-nav-toggle
+        >
+          <span aria-hidden="true"></span>
+          <span class="sr-only">Menu</span>
+        </button>
+
+        <nav class="nav-menu" id="navMenu" data-nav-menu>
+          <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+          <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+          <a class="nav-link" href="{{ url_for('topic', slug='iot') }}">IoT</a>
+          <a class="nav-link" href="{{ url_for('topic', slug='drones') }}">Drones</a>
+          <a class="nav-link" href="{{ url_for('topic', slug='water') }}">Water</a>
+          <a class="nav-link" href="{{ url_for('topic', slug='distribution') }}">Distribution</a>
+          <a class="nav-link nav-link-cta" href="{{ url_for('contact_get') }}">Request a demo</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <section class="container">
+            <div class="flash-stack" role="status" aria-live="polite">
+              {% for category, message in messages %}
+                <div class="flash flash--{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <div class="footer-title">Minimal Agri Intelligence</div>
+          <div class="footer-text">
+            Built around practical agriculture use-cases across farms and supply chains.
+          </div>
+        </div>
+        <div class="footer-links">
+          <a class="footer-link" href="{{ url_for('privacy') }}">Privacy</a>
+          <a class="footer-link" href="{{ url_for('contact_get') }}">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  </body>
+</html>
+

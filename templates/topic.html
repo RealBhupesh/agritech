@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}{{ topic.title }} - AgriPulse{% endblock %}
+
+{% block content %}
+  <section class="topic-hero">
+    <div class="container topic-hero-grid">
+      <div>
+        <div class="kicker">{{ topic.title }}</div>
+        <h1 class="topic-title">{{ topic.kicker }}</h1>
+        <p class="topic-subtitle">
+          Built for teams who need clear operational impact from connected systems.
+        </p>
+
+        <div class="topic-actions">
+          <a
+            class="btn btn--primary"
+            href="{{ url_for('contact_get', topic=topic.cta_topic) }}"
+          >
+            Request a demo for this pillar
+          </a>
+          <a class="btn btn--ghost" href="{{ url_for('index') }}">Back to topics</a>
+        </div>
+      </div>
+
+      <aside class="topic-side" aria-hidden="true">
+        <div class="side-card">
+          <div class="side-label">Focus</div>
+          <div class="side-big">Practical workflows</div>
+          <div class="side-muted">
+            Alerts, decision support, and measurable improvements.
+          </div>
+        </div>
+        <div class="side-lines"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="two-col two-col--wide">
+        <div class="content-card">
+          <div class="content-card-title">Overview</div>
+          <div class="content-list">
+            {% for x in topic.overview %}
+              <div class="content-row">
+                <div class="content-bullet" aria-hidden="true">•</div>
+                <div class="content-text">{{ x }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="content-card content-card--accent">
+          <div class="content-card-title">Key use-cases</div>
+          <div class="usecases">
+            {% for u in topic.use_cases %}
+              <div class="usecase">
+                <div class="usecase-h">
+                  <span class="usecase-icon" aria-hidden="true">✓</span>
+                  <span class="usecase-title">{{ u.h }}</span>
+                </div>
+                <div class="usecase-p">{{ u.p }}</div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="cta-inline">
+            <div class="cta-inline-title">Next step</div>
+            <div class="cta-inline-sub">
+              We’ll propose a small rollout that fits your field reality.
+            </div>
+            <a class="btn btn--primary btn--wide" href="{{ url_for('contact_get', topic=topic.cta_topic) }}">Request a demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+

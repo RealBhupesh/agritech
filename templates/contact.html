@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - AgriPulse{% endblock %}
+
+{% block content %}
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Request a demo</h2>
+        <p class="section-subtitle">
+          Share what you’re working on. We’ll follow up with a practical rollout plan.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="content-card">
+          <div class="content-card-title">Your details</div>
+          <form method="post" action="{{ url_for('inquiries_post') }}" class="form">
+            <div class="field">
+              <label class="label" for="name">Name</label>
+              <input
+                id="name"
+                name="name"
+                class="input"
+                type="text"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label class="label" for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                class="input"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label class="label" for="topic">Topic</label>
+              <select id="topic" name="topic" class="input" required>
+                {% for t in topics %}
+                  <option
+                    value="{{ t.cta_topic }}"
+                    {% if selected_topic == t.cta_topic %}selected{% endif %}
+                  >
+                    {{ t.title }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="label" for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="textarea"
+                rows="5"
+                placeholder="Example: We want to monitor soil moisture and optimize irrigation scheduling for 30 acres."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn--primary btn--wide" type="submit">
+                Submit request
+              </button>
+            </div>
+
+            <div class="fineprint fineprint--form">
+              Saved securely in PostgreSQL. No raw SQL is used in the app code.
+            </div>
+          </form>
+        </div>
+
+        <div class="side-stack">
+          <div class="side-card side-card--soft">
+            <div class="content-card-title">What you’ll receive</div>
+            <div class="side-muted">
+              A short plan with the right data inputs, workflow steps, and measurable outcomes.
+            </div>
+            <div class="side-bullets">
+              <div class="mini-row">
+                <span class="mini-check" aria-hidden="true">✓</span>
+                <span>Integration outline</span>
+              </div>
+              <div class="mini-row">
+                <span class="mini-check" aria-hidden="true">✓</span>
+                <span>Deployment steps</span>
+              </div>
+              <div class="mini-row">
+                <span class="mini-check" aria-hidden="true">✓</span>
+                <span>Success metrics</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-card side-card--soft side-card--accent">
+            <div class="content-card-title">Design principle</div>
+            <div class="side-muted">
+              Minimal UI, modern components, and fast access to the information that matters.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
