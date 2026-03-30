@@ -25,38 +25,6 @@ db.init_app(app)
 
 
 TOPICS = {
-    "iot": {
-        "slug": "iot",
-        "title": "Agriculture + IoT Devices",
-        "kicker": "Sensors that turn farms into data-driven systems",
-        "overview": [
-            "Soil moisture, temperature, and humidity monitoring to reduce guesswork.",
-            "Automated alerts for irrigation timing, plant stress, and weather shifts.",
-            "Condition-based decision support for growers and extension teams.",
-        ],
-        "use_cases": [
-            {"h": "Smart irrigation", "p": "Water only when crops need it."},
-            {"h": "Microclimate visibility", "p": "Understand variation across fields."},
-            {"h": "Predictive maintenance", "p": "Keep pumps/controls running reliably."},
-        ],
-        "cta_topic": "Agriculture - Use of IoT Devices",
-    },
-    "drones": {
-        "slug": "drones",
-        "title": "Drones in Agriculture",
-        "kicker": "Fast, repeatable sensing at the scale of fields",
-        "overview": [
-            "Aerial imaging for crop health, stress detection, and early intervention.",
-            "Mapping and surveying for planning and yield estimation.",
-            "Operational efficiency for farms and agronomy teams.",
-        ],
-        "use_cases": [
-            {"h": "Health scouting", "p": "Spot issues before they spread."},
-            {"h": "Field mapping", "p": "Support planting decisions and tracking."},
-            {"h": "Targeted interventions", "p": "Treat problem areas more precisely."},
-        ],
-        "cta_topic": "Drones in Agriculture",
-    },
     "water": {
         "slug": "water",
         "title": "Management of Water",

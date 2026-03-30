@@ -9,7 +9,7 @@
     <title>{% block title %}AgriPulse{% endblock %}</title>
     <meta
       name="description"
-      content="Minimal, modern web experience for agriculture IoT, drones, water management, and farm-to-market distribution."
+      content="Minimal, modern web experience for agriculture water management and farm-to-market distribution."
     />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
   </head>
@@ -38,8 +38,6 @@
         <nav class="nav-menu" id="navMenu" data-nav-menu>
           <a class="nav-link" href="{{ url_for('index') }}">Home</a>
           <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
-          <a class="nav-link" href="{{ url_for('topic', slug='iot') }}">IoT</a>
-          <a class="nav-link" href="{{ url_for('topic', slug='drones') }}">Drones</a>
           <a class="nav-link" href="{{ url_for('topic', slug='water') }}">Water</a>
           <a class="nav-link" href="{{ url_for('topic', slug='distribution') }}">Distribution</a>
           <a class="nav-link nav-link-cta" href="{{ url_for('contact_get') }}">Request a demo</a>

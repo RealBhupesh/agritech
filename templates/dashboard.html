@@ -35,9 +35,7 @@
       <aside class="dash-sidebar" aria-label="Dashboard navigation">
         <div class="dash-sidehead">Modules</div>
         <a class="dash-sidelink dash-sidelink--active" href="/dashboard">Overview</a>
-        <a class="dash-sidelink" href="{{ url_for('topic', slug='iot') }}">IoT Devices</a>
         <a class="dash-sidelink" href="{{ url_for('topic', slug='water') }}">Water Management</a>
-        <a class="dash-sidelink" href="{{ url_for('topic', slug='drones') }}">Drones</a>
         <a class="dash-sidelink" href="{{ url_for('topic', slug='distribution') }}">Distribution</a>
 
         <div class="dash-sidehint">
@@ -136,8 +134,7 @@
               This dashboard is designed to plug into your IoT pipeline and replace synthetic data.
             </div>
             <div class="dash-callout-actions">
-              <a class="btn btn--primary" href="{{ url_for('contact_get', topic='Agriculture - Use of IoT Devices') }}">Request a demo</a>
-              <a class="btn btn--ghost" href="{{ url_for('topic', slug='iot') }}">Read IoT pillar</a>
+              <a class="btn btn--primary" href="{{ url_for('contact_get') }}">Request a demo</a>
             </div>
           </div>
         </div>
